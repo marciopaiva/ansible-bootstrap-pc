@@ -1,0 +1,15 @@
+---
+- name: CONFIGURAÇÕES DO SISTEMA OPERACIONAL
+  hosts: all
+  become: true
+  tags:
+    - system
+  roles:
+    - system
+
+- name: CONFIGURAÇÕES DO BASH
+  hosts: all
+  tags:
+    - bash
+  roles:
+    - bash
