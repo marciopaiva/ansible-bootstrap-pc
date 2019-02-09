@@ -1,0 +1,21 @@
+---
+- name: Incluindo arquivos de configuracao
+  include_tasks: "{{ task_file }}"
+  with_first_found:
+    - files:
+      - "{{ ansible_distribution }}-{{ ansible_distribution_version }}.yml"
+      - "{{ ansible_distribution }}.yml"
+  loop_control:
+    loop_var: task_file
+
+- name: Verificando a lista de plugins instalados
+  shell: "code --list-extensions | tr '[:upper:]' '[:lower:]'"
+  register: plugin_installed
+  changed_when: False
+
+- name: Instalando os plugins para o VSCode
+  shell: "code --install-extension {{ item }}"
+  with_items:
+    - "{{ vscode_plugins }}"
+  when: item | lower not in plugin_installed.stdout
+  

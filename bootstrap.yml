@@ -13,3 +13,10 @@
     - bash
   roles:
     - bash
+
+- name: INSTALAÇÃO FERRAMENTAS DE DESENVOLVIMENTO
+  hosts: all
+  tags:
+    - tools
+  roles:
+    - vscode

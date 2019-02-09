@@ -16,3 +16,4 @@
 
 - name: Configurando o teclado para o Lenovo P50
   command: setxkbmap -model thinkpad60 -layout br -variant abnt2
+  

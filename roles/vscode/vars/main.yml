@@ -1,0 +1,21 @@
+---
+vscode_plugins:
+  - mitaki28.vscode-clang
+  - ms-vscode.cpptools
+  - vscoss.vscode-ansible
+  - eamodio.gitlens
+  - ms-python.python
+  - robertohuertasm.vscode-icons
+  - PeterJausovec.vscode-docker
+  - formulahendry.code-runner
+  - humao.rest-client
+  - redhat.vscode-yaml
+  - liximomo.sftp
+  - yzhang.markdown-all-in-one
+  - ms-vscode.go
+  - redhat.java
+  - shd101wyy.markdown-preview-enhanced
+  - streetsidesoftware.code-spell-checker
+  - streetsidesoftware.code-spell-checker-portuguese-brazilian
+  - haaaad.ansible
+  - fatih.baba-flow
