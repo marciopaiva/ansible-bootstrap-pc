@@ -1,0 +1,23 @@
+---
+- name: Alterando Configurações do bashrc
+  replace:
+    path: ~/.bashrc
+    regexp: '^#force_color_prompt='
+    replace: 'force_color_prompt='
+
+- replace:
+    path: ~/.bashrc
+    regexp: '^#alias ll='
+    replace: 'alias ll='
+  
+- name: Instalação do Pureline bash
+  become: true
+  git:
+   repo: https://github.com/chris-marsh/pureline.git 
+   dest: /usr/src/pureline
+
+- name: Configuração do Pureline no bashrc
+  blockinfile:
+    path: ~/.bashrc
+    block: source /usr/src/pureline/pureline /usr/src/pureline/configs/powerline_full_256col.conf
+
