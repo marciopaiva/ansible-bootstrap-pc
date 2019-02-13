@@ -17,6 +17,6 @@
 - name: INSTALAÇÃO FERRAMENTAS DE DESENVOLVIMENTO
   hosts: all
   tags:
-    - tools
+    - vscode
   roles:
     - vscode
