@@ -1,5 +1,5 @@
 ---
-- name: Incluindo arquivos de configuracao
+- name: Incluindo arquivos de configuração
   include_tasks: "{{ task_file }}"
   with_first_found:
     - files:
