@@ -1,5 +1,5 @@
 ---
-- name: Incluindo arquivos de configuracao
+- name: Incluindo arquivos de configuração
   include_tasks: "{{ task_file }}"
   with_first_found:
     - files:
@@ -8,12 +8,12 @@
   loop_control:
     loop_var: task_file
 
-- name: Verificando a lista de plugins instalados
+- name: Verificando a lista de Plugins Instalados
   shell: "code --list-extensions | tr '[:upper:]' '[:lower:]'"
   register: plugin_installed
   changed_when: False
 
-- name: Instalando os plugins para o VSCode
+- name: Instalando os Plugins para o VSCode
   shell: "code --install-extension {{ item }}"
   with_items:
     - "{{ vscode_plugins }}"

@@ -1,0 +1,30 @@
+---
+- name: Atualizando todos os pacotes do sistema
+  dnf:
+    name: "*"
+    state: latest
+
+- name: Removendo ferramentas não necessárias
+  dnf:
+    name: "{{ packages }}"
+    state: absent
+    autoremove: yes
+  vars:
+    packages:
+    - cheese
+    - evolution
+    - libreoffice-core
+    - shotwell
+    - empathy
+ 
+- name: Instalação de ferramentas de apoio
+  dnf:
+    name: "{{ packages }}"
+    state: latest
+  vars:
+    packages:
+    - vim
+    - vim-powerline
+    - powerline-fonts
+    - libselinux-python
+
