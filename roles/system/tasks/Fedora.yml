@@ -25,6 +25,7 @@
     packages:
     - vim
     - vim-powerline
+    - tuned
     - powerline-fonts
     - libselinux-python
 
