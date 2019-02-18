@@ -1,6 +1,7 @@
 ---
 vscode_plugins:
   - vscoss.vscode-ansible
+  - DavidAnson.vscode-markdownlint
   - robertohuertasm.vscode-icons
   - PeterJausovec.vscode-docker
   - redhat.vscode-yaml

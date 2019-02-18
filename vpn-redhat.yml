@@ -1,0 +1,12 @@
+---
+- name: INSTALAÇÃO VPN RED HAT
+  hosts: all
+  become: true
+  roles:
+    - rh-vpn
+  vars_prompt:
+  - name: "vpn_redhat_user"
+    prompt: "VPN Usuário "
+    private: no
+  - name: "vpn_redhat_pass"
+    prompt: "VPN Senha (PIN + Token) "

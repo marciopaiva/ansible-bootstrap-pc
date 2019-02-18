@@ -30,3 +30,11 @@ git clone https://github.com/marciopaiva/ansible-bootstrap-pc.git
 cd ansible-bootstrap-pc
 ansible-playbook -i inventory bootstrap.yml --ask-become-pass --tags "vscode,bash"
 ```
+
+### Playbook VPN Red Hat
+
+Este playbook solicitará seu usuário SSO e senha (pin+token)
+
+```bash
+ansible-playbook -i inventory vpn-redhat.yml --ask-become-pass
+```
