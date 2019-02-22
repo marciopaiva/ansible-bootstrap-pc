@@ -21,11 +21,18 @@
   dnf:
     name: "{{ packages }}"
     state: latest
+    enablerepo: 'google-chrome'
   vars:
     packages:
+    - fedora-workstation-repositories.noarch
     - vim
     - vim-powerline
     - tuned
+    - gitflow
     - powerline-fonts
     - libselinux-python
+    - google-roboto-fonts
+    - google-chrome-stable
+    - tilix
+    - tilix-nautilus
 

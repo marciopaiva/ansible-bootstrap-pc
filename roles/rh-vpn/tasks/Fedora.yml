@@ -26,3 +26,7 @@
 - name: Parando o serviço de túnel Proxy SSH
   shell: ps -ef | grep -iE -- "ss[h].*{{vpn_redhat_proxy_port}}" | awk '{print $2}' | xargs kill -9
   become: yes
+
+- name: Removendo o repositório da VPN
+  shell: rm /etc/yum.repos.d/rhel7-csb-stage.repo
+  become: yes
