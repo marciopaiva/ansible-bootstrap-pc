@@ -15,6 +15,7 @@
 
 - name: Instalando os Plugins para o VSCode
   shell: "code --install-extension {{ item }}"
+  become: false
   with_items:
     - "{{ vscode_plugins }}"
   when: item | lower not in plugin_installed.stdout
