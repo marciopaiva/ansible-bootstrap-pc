@@ -5,6 +5,7 @@ vscode_plugins:
   - robertohuertasm.vscode-icons
   - PeterJausovec.vscode-docker
   - redhat.vscode-yaml
+  - redhat.vscode-openshift-connector
   - yzhang.markdown-all-in-one
   - ms-vscode.go
   - redhat.java

@@ -16,6 +16,7 @@
     - libreoffice-core
     - shotwell
     - empathy
+    - gnome-boxes
  
 - name: Instalação de ferramentas de apoio
   dnf:
@@ -35,4 +36,5 @@
     - google-chrome-stable
     - tilix
     - tilix-nautilus
+    - xz
 
