@@ -6,8 +6,9 @@
    dest: /usr/src/pureline
 
 - name: Configuração do Pureline no .bashrc
+  become: false
   blockinfile:
-    path: ~/.bashrc
+    dest: ~/.bashrc
     marker: "# {mark} ANSIBLE MANAGED BLOCK PURELINE"
     block: |
       if [ "$TERM" != "linux" ]; then
