@@ -2,14 +2,19 @@
 
 Este é meu **Ansible playbook** para me ajudar a reconstruir minha estação de trabalho.
 
-Lista das Distribuições em que foi testado:
-- Fedora 29
+Distribuição atual em uso:
+- Fedora 31
 
 ## Utilização
 
 Para utilizar esse playbook você precisa ter instalado em sua maquina o **SO** base, e as seguintes ferramentas:
 - Ansible
 - Git
+- Make
+
+```bash
+sudo dnf install make, git, ansible
+```
 
 Executando o playbook:
 ```bash

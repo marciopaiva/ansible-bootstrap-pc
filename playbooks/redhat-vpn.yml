@@ -1,0 +1,42 @@
+---
+- name: INSTALAÇÃO E CONFIGURAÇÃO DA VPN REDHAT
+  hosts: all
+
+  vars:
+    vpn_redhat_ssh_url: ovpn-rdu2.redhat.com
+    vpn_redhat_ssh_port: 330
+    vpn_redhat_proxy_port: 9999
+    
+  vars_prompt:
+  - name: "vpn_redhat_user"
+    prompt: "VPN Usuário "
+    private: no
+  - name: "vpn_redhat_pass"
+    prompt: "VPN Senha (PIN + Token) "
+
+  tasks:
+  - name: Verificando a existência de túnel Proxy SSH
+    shell: ps -ef | grep -iE -- "ss[h].*{{vpn_redhat_proxy_port}}" | awk '{print $2}'
+    register: proxy_pids
+
+  - name: Criando túnel Proxy SSH
+    shell: |
+      set +H
+      nohup sshpass -p {{vpn_redhat_pass}} ssh -D {{vpn_redhat_proxy_port}} {{vpn_redhat_user}}@{{vpn_redhat_ssh_url}} -p {{vpn_redhat_ssh_port}} -N -oStrictHostKeyChecking=no &
+      sleep 5
+    when: proxy_pids.stdout == ""
+
+  - name: Redirecionando a URL interna para o Proxy SSH
+    shell: nc -z home.corp.redhat.com 80 -w2 --proxy localhost:{{vpn_redhat_proxy_port}} --proxy-type socks5
+
+  - name: Instalando o Certificados e Pacotes da VPN Red Hat
+    shell: |
+      http_proxy=socks5h://localhost:{{vpn_redhat_proxy_port}} rpm --import http://hdn.corp.redhat.com/rhel7-csb-stage/RPM-GPG-KEY-helpdesk
+      http_proxy=socks5h://localhost:{{vpn_redhat_proxy_port}} curl -o /etc/yum.repos.d/rhel7-csb-stage.repo http://hdn.corp.redhat.com/rhel7-csb-stage/rhel7-csb-stage.repo
+      http_proxy=socks5h://localhost:{{vpn_redhat_proxy_port}} dnf install -y redhat-internal-cert-install redhat-internal-NetworkManager-openvpn-profiles
+
+  - name: Parando o serviço de túnel Proxy SSH
+    shell: ps -ef | grep -iE -- "ss[h].*{{vpn_redhat_proxy_port}}" | awk '{print $2}' | xargs kill -9
+
+  - name: Removendo o repositório da VPN
+    shell: rm /etc/yum.repos.d/rhel7-csb-stage.repo

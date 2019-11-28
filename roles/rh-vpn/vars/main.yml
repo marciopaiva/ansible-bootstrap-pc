@@ -1,4 +1,0 @@
----
-vpn_redhat_ssh_url: ovpn-rdu2.redhat.com
-vpn_redhat_ssh_port: 330
-vpn_redhat_proxy_port: 9999

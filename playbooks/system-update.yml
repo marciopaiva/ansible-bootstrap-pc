@@ -1,0 +1,56 @@
+---
+- name: INSTALAÇÃO E CONFIGURAÇÃO DO SISTEMA
+  hosts: all
+    
+  tasks:
+  - name: system-update | Removendo ferramentas não necessárias
+    dnf:
+      name: "{{ packages }}"
+      state: absent
+    vars:
+      packages:
+      - gnome-boxes
+      - libreoffice*
+      - evolution
+
+  - name: system-update  | Instalando ferramentas de apoio
+    dnf:
+      name: "{{ packages }}"
+      state: latest
+    vars:
+      packages:
+      - fedora-workstation-repositories
+      - vim
+      - git
+      - python3-psutil
+      - tilix
+
+  - name: system-update | Configurando o Terminal Tilix
+    become: false
+    dconf:
+      key: "{{ item.key }}"
+      value: "{{ item.value }}"
+      state: present
+    with_items:
+    - { key: '/com/gexperts/Tilix/copy-on-select', value: 'true' }
+    - { key: '/com/gexperts/Tilix/paste-strip-first-char', value: 'true' }
+    - { key: '/com/gexperts/Tilix/theme-variant', value: '"dark"' }
+    - { key: '/com/gexperts/Tilix/warn-vte-config-issue', value: 'false' }
+
+  - name: system-update | Instalando o navegador Google Chrome
+    dnf:
+      name: google-chrome-stable
+      enablerepo: google-chrome
+      state: present
+
+  - name: system-update | Verificando se existe uma chave ssh no home do usuário
+    stat:
+      path: /home/{{ ansible_user }}/.ssh/id_rsa
+    become: false
+    register: ssh_key_exist
+
+  - name: system-update | Gerando chave ssh no home do usuário
+    shell: >
+      yes y | ssh-keygen -t rsa -q -N "" -f /home/{{ ansible_user }}/.ssh/id_rsa
+    become: false
+    when: (not ssh_key_exist.stat.exists) 

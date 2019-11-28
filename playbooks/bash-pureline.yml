@@ -1,0 +1,23 @@
+---
+- name: INSTALAÇÃO DO BASH PURELINE
+  hosts: all
+
+  tasks:
+  - name: bash-pureline | Instalando ferramentas de apoio
+    dnf:
+      name: "powerline-fonts"
+      state: latest
+
+  - name: bash-pureline | Instalando o Pureline bash
+    git:
+      repo: https://github.com/chris-marsh/pureline.git 
+      dest: /usr/src/pureline
+
+  - name: bash-pureline | Configurando o Pureline bash
+    blockinfile:
+      dest: /etc/bashrc
+      marker: "# {mark} ANSIBLE MANAGED BLOCK PURELINE"
+      block: |
+        if [ "$TERM" != "linux" ]; then
+          source /usr/src/pureline/pureline /usr/src/pureline/configs/powerline_full_256col.conf
+        fi

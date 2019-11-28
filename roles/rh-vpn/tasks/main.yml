@@ -1,9 +1,0 @@
----
-- name: Incluindo arquivos de configuração
-  include_tasks: "{{ task_file }}"
-  with_first_found:
-    - files:
-      - "{{ ansible_distribution }}-{{ ansible_distribution_version }}.yml"
-      - "{{ ansible_distribution }}.yml"
-  loop_control:
-    loop_var: task_file

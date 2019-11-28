@@ -1,0 +1,50 @@
+---
+- name: INSTALAÇÃO DO VISUAL STUDIO CODE
+  hosts: all
+
+  vars:
+    vscode_plugins:
+      - DavidAnson.vscode-markdownlint
+      - redhat.vscode-yaml
+      - redhat.vscode-xml
+      - yzhang.markdown-all-in-one
+      - ms-vscode.go
+      - ms-azuretools.vscode-docker
+      - shd101wyy.markdown-preview-enhanced
+      - streetsidesoftware.code-spell-checker
+      - streetsidesoftware.code-spell-checker-portuguese-brazilian
+    
+  tasks:
+  - name: visual-studio-code | Adicionando repositório para o VSCode
+    yum_repository:
+      name: Code
+      description: Visual Studio Code repo
+      file: vscode
+      baseurl: https://packages.microsoft.com/yumrepos/vscode
+      gpgkey: https://packages.microsoft.com/keys/microsoft.asc
+      gpgcheck: yes
+
+  - name: visual-studio-code | Instalando o Visual Studio Code
+    dnf:
+      name: code
+      update_cache: yes
+      state: present
+
+  - name: visual-studio-code | Verificando a lista de Plugins Instalados
+    shell: "code --list-extensions | tr '[:upper:]' '[:lower:]'"
+    register: plugin_installed
+    changed_when: False
+    become: false
+
+  - name: visual-studio-code | Instalando os Plugins para o VSCode
+    shell: "code --install-extension {{ item }}"
+    with_items:
+      - "{{ vscode_plugins }}"
+    when: item | lower not in plugin_installed.stdout
+    become: false
+
+  - name: visual-studio-code | Aplicando configurações para o VSCode
+    copy: 
+      src: ../files/vscode-settings.json
+      dest: ~/.config/Code/User/settings.json
+    become: false
