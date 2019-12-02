@@ -28,5 +28,8 @@ vs-code: ## Instalação e configuração do Visual Studio Code
 bash-pureline: ## Instalação e configuração do Bash Pureline
 	@ansible-playbook playbooks/bash-pureline.yml
 
+gnome-theme: ## Instalação e configuração do Gnome Theme
+	@ansible-playbook playbooks/gnome-theme.yml
+
 redhat-vpn: ## Instalação e configuração da VPN Red Hat
 	@ansible-playbook playbooks/redhat-vpn.yml

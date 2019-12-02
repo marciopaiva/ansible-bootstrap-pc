@@ -1,0 +1,31 @@
+---
+- name: INSTALAÇÃO DO THEME STYLISH
+  hosts: all
+
+  tasks:
+  - name: gnome-theme | Instalando ferramentas de apoio
+    dnf:
+      name: "{{ packages }}"
+      state: latest
+    vars:
+      packages:
+      - gnome-tweaks
+      - gtk-murrine-engine
+      - gtk2-engines
+
+  - name: gnome-theme | Baixando pacotes do Theme Stylish
+    git:
+      repo: https://github.com/vinceliuice/stylish-gtk-theme.git
+      dest: /tmp/stylish
+
+  - name: gnome-theme | Instalando o Theme Stylish
+    shell: /tmp/stylish/Install
+    become: false
+
+  - name: gnome-theme | Aplicando o Theme Stylish no Gnome
+    shell: gsettings set org.gnome.desktop.interface gtk-theme "Stylish-Laptop"
+    become: false
+
+  - name: gnome-theme | Aplicando o Theme Stylish no Gnome Shell
+    shell: gsettings set org.gnome.shell.extensions.user-theme name 'Stylish-Laptop'
+    become: false
