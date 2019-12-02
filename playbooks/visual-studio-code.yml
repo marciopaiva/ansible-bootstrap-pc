@@ -13,6 +13,9 @@
       - shd101wyy.markdown-preview-enhanced
       - streetsidesoftware.code-spell-checker
       - streetsidesoftware.code-spell-checker-portuguese-brazilian
+      - CoenraadS.bracket-pair-colorizer
+      - eamodio.gitlens
+      - esbenp.prettier-vscode
     
   tasks:
   - name: visual-studio-code | Adicionando repositório para o VSCode

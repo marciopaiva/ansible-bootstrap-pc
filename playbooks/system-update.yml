@@ -13,7 +13,7 @@
       - libreoffice*
       - evolution
 
-  - name: system-update  | Instalando ferramentas de apoio
+  - name: system-update | Instalando ferramentas de apoio
     dnf:
       name: "{{ packages }}"
       state: latest
@@ -24,6 +24,8 @@
       - git
       - python3-psutil
       - tilix
+      - toolbox
+      - origin-clients
 
   - name: system-update | Configurando o Terminal Tilix
     become: false
@@ -32,10 +34,10 @@
       value: "{{ item.value }}"
       state: present
     with_items:
-    - { key: '/com/gexperts/Tilix/copy-on-select', value: 'true' }
-    - { key: '/com/gexperts/Tilix/paste-strip-first-char', value: 'true' }
-    - { key: '/com/gexperts/Tilix/theme-variant', value: '"dark"' }
-    - { key: '/com/gexperts/Tilix/warn-vte-config-issue', value: 'false' }
+    - { key: "/com/gexperts/Tilix/copy-on-select", value: "true" }
+    - { key: "/com/gexperts/Tilix/paste-strip-first-char", value: "true" }
+    - { key: "/com/gexperts/Tilix/theme-variant", value: "'dark'" }
+    - { key: "/com/gexperts/Tilix/warn-vte-config-issue", value: "false" }
 
   - name: system-update | Instalando o navegador Google Chrome
     dnf:
