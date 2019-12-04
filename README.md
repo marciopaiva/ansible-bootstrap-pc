@@ -20,26 +20,18 @@ Executando o playbook:
 ```bash
 git clone https://github.com/marciopaiva/ansible-bootstrap-pc.git
 cd ansible-bootstrap-pc
-ansible-playbook -i inventory bootstrap.yml --ask-become-pass
+make all
 ```
 
-## TAGs Ansible disponíveis
+## Opções disponíveis
+- system-update
+- vs-code
+- bash-pureline
+- gnome-theme
 
-- system
-- bash
-- vscode
-
-Executando o playbook com tags especificas:
+Executando o playbook com opção especifica:
 ```bash
 git clone https://github.com/marciopaiva/ansible-bootstrap-pc.git
 cd ansible-bootstrap-pc
-ansible-playbook -i inventory bootstrap.yml --ask-become-pass --tags "vscode,bash"
-```
-
-### Playbook VPN Red Hat
-
-Este playbook solicitará seu usuário SSO e senha (pin+token)
-
-```bash
-ansible-playbook -i inventory vpn-redhat.yml --ask-become-pass
+make vs-code 
 ```

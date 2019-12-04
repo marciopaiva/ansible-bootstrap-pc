@@ -1,4 +1,5 @@
 {
     "files.autoSave": "afterDelay",
-    "cSpell.language": "\"pt-br\", \"en\""
+    "cSpell.language": "\"pt-br\", \"en\"",
+    "workbench.iconTheme": "vscode-great-icons"
 }
