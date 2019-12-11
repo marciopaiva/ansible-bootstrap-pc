@@ -12,6 +12,8 @@
       - gnome-tweaks
       - gtk-murrine-engine
       - gtk2-engines
+      - glib2
+      - glib2-devel
 
   - name: gnome-theme | Baixando pacotes do Theme Stylish
     git:
@@ -33,18 +35,26 @@
   - name: gnome-theme | Copiando Backgrounds do Rhel 8 para o usuário
     copy:
       src: ../files/backgrounds/
-      dest: ~/.local/share/backgrounds
+      dest: /usr/src/backgrounds
       mode: '0744'
-    become: false
 
   - name: gnome-theme | Aplicando o Backgrounds para usuário
-    shell: gsettings set org.gnome.desktop.background picture-uri ~/.local/share/backgrounds/8-dark-2560x1440.jpg
+    shell: gsettings set org.gnome.desktop.background picture-uri /usr/src/backgrounds/8-dark-2560x1440.jpg
     become: false
 
   - name: gnome-theme | Aplicando o Screensaver para o usuário
-    shell: gsettings set org.gnome.desktop.screensaver picture-uri ~/.local/share/backgrounds/8-dark-2560x1440.jpg
+    shell: gsettings set org.gnome.desktop.screensaver picture-uri /usr/src/backgrounds/8-abstract-dark-2560x1440.jpg
     become: false
 
   - name: gnome-theme | Aplicando as configurações das aplicações favoritas
     shell: gsettings set org.gnome.shell favorite-apps "['firefox.desktop', 'google-chrome.desktop', 'org.gnome.Nautilus.desktop', 'org.gnome.Terminal.desktop', 'com.gexperts.Tilix.desktop', 'code.desktop']"
     become: false
+
+  - name: gnome-theme | Baixando pacotes do GDM Theme
+    git:
+      repo: https://github.com/DimaZirix/fedora-gdm-wallpaper.git
+      dest: /tmp/gdm-theme
+
+  - name: gnome-theme | Instalando o GDM Theme
+    shell: /tmp/gdm-theme/set-gdm-wallpaper.sh /usr/src/backgrounds/8-abstract-dark-2560x1440.jpg
+    become: true
