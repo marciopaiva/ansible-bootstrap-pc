@@ -23,9 +23,28 @@
     become: false
 
   - name: gnome-theme | Aplicando o Theme Stylish no Gnome
-    shell: gsettings set org.gnome.desktop.interface gtk-theme "Stylish-Laptop"
+    shell: gsettings set org.gnome.desktop.interface gtk-theme "Stylish-Dark-Laptop-Azul"
     become: false
 
   - name: gnome-theme | Aplicando o Theme Stylish no Gnome Shell
-    shell: gsettings set org.gnome.shell.extensions.user-theme name 'Stylish-Laptop'
+    shell: gsettings set org.gnome.shell.extensions.user-theme name 'Stylish-Dark-Laptop-Azul'
+    become: false
+
+  - name: gnome-theme | Copiando Backgrounds do Rhel 8 para o usuário
+    copy:
+      src: ../files/backgrounds/
+      dest: ~/.local/share/backgrounds
+      mode: '0744'
+    become: false
+
+  - name: gnome-theme | Aplicando o Backgrounds para usuário
+    shell: gsettings set org.gnome.desktop.background picture-uri ~/.local/share/backgrounds/8-dark-2560x1440.jpg
+    become: false
+
+  - name: gnome-theme | Aplicando o Screensaver para o usuário
+    shell: gsettings set org.gnome.desktop.screensaver picture-uri ~/.local/share/backgrounds/8-dark-2560x1440.jpg
+    become: false
+
+  - name: gnome-theme | Aplicando as configurações das aplicações favoritas
+    shell: gsettings set org.gnome.shell favorite-apps "['firefox.desktop', 'google-chrome.desktop', 'org.gnome.Nautilus.desktop', 'org.gnome.Terminal.desktop', 'com.gexperts.Tilix.desktop', 'code.desktop']"
     become: false

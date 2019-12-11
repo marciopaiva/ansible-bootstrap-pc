@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE wallpapers SYSTEM "gnome-wp-list.dtd">
+<wallpapers>
+    <wallpaper deleted="false">
+        <name>8 Abstract Dark</name>
+        <filename>/usr/share/backgrounds/8-abstract-dark.xml</filename>
+        <options>zoom</options>
+    </wallpaper>
+
+    <wallpaper deleted="false">
+        <name>8 Abstract Light</name>
+        <filename>/usr/share/backgrounds/8-abstract-light.xml</filename>
+        <options>zoom</options>
+    </wallpaper>
+
+    <wallpaper deleted="false">
+        <name>8 Dark</name>
+        <filename>/usr/share/backgrounds/8-dark.xml</filename>
+        <options>zoom</options>
+    </wallpaper>
+
+    <wallpaper deleted="false">
+        <name>8 Light</name>
+        <filename>/usr/share/backgrounds/8-light.xml</filename>
+        <options>zoom</options>
+    </wallpaper>
+
+    <wallpaper deleted="false">
+        <name>Circles Dark</name>
+        <filename>/usr/share/backgrounds/circles-dark.xml</filename>
+        <options>zoom</options>
+    </wallpaper>
+
+    <wallpaper deleted="false">
+        <name>Circles Light</name>
+        <filename>/usr/share/backgrounds/circles-light.xml</filename>
+        <options>zoom</options>
+    </wallpaper>
+
+    <wallpaper deleted="false">
+        <name>Hello World Dark</name>
+        <filename>/usr/share/backgrounds/hello-world-dark.xml</filename>
+        <options>zoom</options>
+    </wallpaper>
+
+    <wallpaper deleted="false">
+        <name>Hello World Light</name>
+        <filename>/usr/share/backgrounds/hello-world-light.xml</filename>
+        <options>zoom</options>
+    </wallpaper>
+</wallpapers>
