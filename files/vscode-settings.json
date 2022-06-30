@@ -1,5 +1,8 @@
 {
-    "files.autoSave": "afterDelay",
+    "files.autoSave": "onFocusChange",
     "cSpell.language": "\"pt-br\", \"en\"",
-    "workbench.iconTheme": "vscode-great-icons"
+    "workbench.iconTheme": "vscode-great-icons",
+    "gitlens.hovers.currentLine.over": "line",
+    "gitlens.defaultDateShortFormat": null,
+    "redhat.telemetry.enabled": true
 }

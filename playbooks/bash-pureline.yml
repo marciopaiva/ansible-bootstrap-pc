@@ -1,6 +1,8 @@
 ---
 - name: INSTALAÇÃO DO BASH PURELINE
   hosts: all
+  gather_facts: yes
+  become: yes
 
   tasks:
   - name: bash-pureline | Instalando ferramentas de apoio

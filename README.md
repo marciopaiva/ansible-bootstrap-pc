@@ -3,7 +3,7 @@
 Este é meu **Ansible playbook** para me ajudar a reconstruir minha estação de trabalho.
 
 Distribuição atual em uso:
-- Fedora 31
+- Fedora 36
 
 ## Utilização
 
@@ -20,14 +20,18 @@ Executando o playbook:
 ```bash
 git clone https://github.com/marciopaiva/ansible-bootstrap-pc.git
 cd ansible-bootstrap-pc
-make all
+```
+
+Altere o arquivo hosts.yml, ajustando a variavel ansible_become_password com sua senha de sudo.
+
+```bash
+make
 ```
 
 ## Opções disponíveis
 - system-update
 - vs-code
 - bash-pureline
-- gnome-theme
 
 Executando o playbook com opção especifica:
 ```bash
