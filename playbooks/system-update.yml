@@ -29,7 +29,9 @@
       - tilix
       - toolbox
       - origin-clients
+      - python3-pip
       - podman
+      - source-to-image
     become: true
 
   - name: system-update | Configurando o Terminal Tilix

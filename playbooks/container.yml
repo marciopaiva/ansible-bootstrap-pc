@@ -1,0 +1,39 @@
+---
+- name: INSTALAÇÃO E CONFIGURAÇÃO DE CONTAINERS
+  hosts: all
+  gather_facts: yes
+  become: false
+
+  tasks:
+
+  - name: containers | Instalando ferramentas de apoio
+    dnf:
+      name: "{{ packages }}"
+      state: latest
+    vars:
+      packages:
+      - buildah
+      - podman
+      - podman-gvproxy
+      - containernetworking-plugins
+      - shadow-utils
+      - slirp4netns
+      - source-to-image
+      - fuse-overlayfs
+      - skopeo
+    become: true
+
+  - name: containers | Aplicando configurações para o registries
+    copy: 
+      src: ../files/registries.conf
+      dest: /etc/containers/registries.conf
+    become: true
+
+  - name: containers ! Reiniciando o serviço Podman
+    ansible.builtin.service:
+      name: "podman.service"
+      state: "started"
+      enabled: true
+    changed_when: false
+    failed_when: false
+    become: true

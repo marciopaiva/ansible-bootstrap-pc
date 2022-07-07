@@ -41,6 +41,10 @@ system-update: ## Instalação e configuração dos pacotes basicos
 	@clear
 	@ansible-playbook playbooks/system-update.yml
 
+containers: ## Instalação e configuração de containers
+	@clear
+	@ansible-playbook playbooks/container.yml
+
 vs-code: ## Instalação e configuração do Visual Studio Code
 	@clear
 	@ansible-playbook playbooks/visual-studio-code.yml
